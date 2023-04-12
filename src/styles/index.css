@@ -1,6 +1,25 @@
+body{
+    background-color: rgb(241, 239, 240);
 
+}
+#container{
+    margin: auto;
+    margin-top: 10%;
+    font-size: medium;
+    background-color: rgb(57, 2, 184);
+    border: rgb(14, 13, 13);
+}
+#title{
+    margin-bottom: 3%;
+    
+ }
+#buttonDelete{
+    display: none;
+}
+#task:hover #buttonDelete{
+    display:inline-flex
+}
 /* 
-
     You can write your own styles here...
     
     
@@ -8,5 +27,4 @@
     other sylesheets into your bunde as well, e.j:
     
     import 'relative/path/to/stylesheet.scss';
-
 */

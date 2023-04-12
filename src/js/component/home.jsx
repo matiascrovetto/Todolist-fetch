@@ -1,26 +1,44 @@
-import React from "react";
+import React, { useState } from "react";
+import ElementsList from "./Elementslist.jsx";
+import Input from "./input.jsx";
+import ListCounter from "./listcounter.jsx";
+import ListDefault from "./listdefault.jsx";
+import List from "./list.jsx";
+import Card from "./card.jsx";
 
-//include images into your bundle
-import rigoImage from "../../img/rigo-baby.jpg";
-
-//create your first component
 const Home = () => {
-	return (
-		<div className="text-center">
-			<h1 className="text-center mt-5">Hello Rigo!</h1>
-			<p>
-				<img src={rigoImage} />
-			</p>
-			<a href="#" className="btn btn-success">
-				If you see this green button... bootstrap is working...
-			</a>
-			<p>
-				Made by{" "}
-				<a href="http://www.4geeksacademy.com">4Geeks Academy</a>, with
-				love!
-			</p>
-		</div>
-	);
+  const [task, setTask] = useState("");
+  const [list, setList] = useState([]);
+
+  function handleSubmit(e) {
+    e.preventDefault();
+    setList([...list, task]);
+    setTask("");
+  }
+  console.log(task);
+  console.log(list);
+
+  function handleDelete(i) {
+    const deleteTask = [...list];
+    deleteTask.splice(i, 1);
+    setList(deleteTask);
+  }
+
+  return (
+    <Card>
+      <Input handleSubmit={handleSubmit} task={task} setTask={setTask}/>
+      <List>
+        {list.length > 0 ? (
+          list.map((task, i) => {
+            return <ElementsList handleDelete={handleDelete} task={task} i={i}/>;
+          })
+        ) : (
+          <ListDefault />
+        )}
+        <ListCounter list={list} />
+      </List>
+    </Card>
+  );
 };
 
 export default Home;
